@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MARV Command Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="terminal.js" defer></script>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="overlay"></div>
+    <div class="emblem">M</div>
+    <div class="grid"></div>
+
+    <!-- Terminal Container -->
+    <div class="terminal-container">
+
+        <!-- BOOT SCREEN -->
+        <pre id="boot"></pre>
+
+        <!-- TERMINAL (hidden initially) -->
+        <div id="terminal" class="hidden">
+            <div id="output"></div>
+
+            <div class="input-line">
+                <span class="prompt">you@marv:~$</span>
+                <input type="text" id="commandInput" autocomplete="off" />
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
