@@ -102,7 +102,7 @@ async function execute(command) {
     }
 
     if (parts[1] === "resume") {
-        window.location.href = "/resume";
+        window.open("/resume.pdf", "_blank");
         return;
     }
 
