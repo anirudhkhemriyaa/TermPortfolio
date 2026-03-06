@@ -200,4 +200,4 @@ def get_profiles():
 # SERVE FRONTEND
 # ======================
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="backend/static", html=True), name="static")
