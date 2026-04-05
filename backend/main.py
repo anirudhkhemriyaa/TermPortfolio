@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 import time
+import os
 
 app = FastAPI(title="Anirudha Khemriya | Backend Portfolio API")
 
