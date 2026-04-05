@@ -11,9 +11,7 @@ app = FastAPI(title="Anirudha Khemriya | Backend Portfolio API")
 
 start_time = time.time()
 
-# ======================
-# PROFESSIONAL DATA
-# ======================
+# ====================== PROFESSIONAL DATA
 
 about_data = {
     "identity": {
@@ -40,9 +38,7 @@ about_data = {
     }
 }
 
-# ======================
-# CONTACT & PROFILES
-# ======================
+# ====================== CONTACT & PROFILES
 
 contact_data = {
     "email": "anirudhakhemriya06@gmail.com",
@@ -57,9 +53,7 @@ profiles_data = {
     "leetcode": "https://leetcode.com/u/Anirudha__khemriya/"
 }
 
-# ======================
-# PROJECTS
-# ======================
+# ====================== PROJECTS
 
 projects_data = [
     {
@@ -159,9 +153,8 @@ projects_data = [
     }
 ]
 
-# ======================
-# SKILLS
-# ======================
+# ====================== SKILLS
+
 
 skills_data = {
     "programming & Systems": ["Python (Primary)", "C++", "SQL","Linux"],
@@ -190,9 +183,8 @@ skills_data = {
     ]
 }
 
-# ======================
-# ACHIEVEMENTS
-# ======================
+# ====================== ACHIEVEMENTS
+
 
 achievements_data = {
     "leetcode": {
@@ -207,9 +199,8 @@ achievements_data = {
     "current_focus": "Improving SQL performance and strengthening backend system design fundamentals."
 }
 
-# ======================
-# SYSTEM INFO
-# ======================
+# ====================== SYSTEM INFO
+
 
 @app.get("/api/system")
 def system_status():
@@ -221,9 +212,7 @@ def system_status():
         "framework": "FastAPI"
     }
 
-# ======================
-# ROUTES
-# ======================
+# ====================== Routes
 
 @app.get("/api/about")
 def get_about():
@@ -255,8 +244,8 @@ def get_profiles():
     return profiles_data
 
 
-# ======================
-# SERVE FRONTEND
-# ======================
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
