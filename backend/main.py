@@ -65,39 +65,97 @@ projects_data = [
     {
         "module_name": "BACKGROUND_TASK_AUTOMATION_SYSTEM",
         "type": "Backend Automation Platform",
+        "tagline": "Asynchronous task processing system for reliable background execution",
+
         "architecture": {
             "framework": "Django",
             "task_queue": "Celery",
             "broker": "Redis",
             "database": "PostgreSQL"
         },
+
         "problem_solved": "Reduced repetitive institutional workflows by automating email handling, file processing, and background operations.",
+
         "engineering_decisions": [
             "Decoupled heavy operations from HTTP lifecycle using Celery workers",
             "Implemented retry mechanisms for fault tolerance",
             "Optimized DB interactions to prevent request blocking",
             "Separated business logic from view logic for maintainability"
         ],
+
         "focus_area": "Backend reliability & performance isolation",
-        "status": "Production-Ready Academic Prototype",
-        
+        "status": "Production-Ready Academic Prototype"
     },
+
     {
         "module_name": "HIRELINK_JOB_PORTAL",
         "type": "Role-Based Backend System",
+        "tagline": "Structured hiring workflow system with role-based access control",
+
         "architecture": {
             "framework": "Django",
             "database": "PostgreSQL",
             "auth": "Django Auth + Permission System"
         },
+
         "problem_solved": "Designed structured HR and student workflows for job postings and application management.",
+
         "engineering_decisions": [
             "Implemented role-based access control using permission layers",
             "Structured efficient query handling for job retrieval",
             "Designed clean separation of business logic from request handling"
         ],
+
         "focus_area": "Access control & scalable backend design",
         "status": "Functional Backend Implementation"
+    },
+
+    {
+        "module_name": "REAL_TIME_CLINIC_QUEUE_SYSTEM",
+        "type": "Real-Time Distributed System",
+        "tagline": "Live token-based queue system with real-time updates",
+
+        "architecture": {
+            "framework": "FastAPI",
+            "realtime": "WebSockets",
+            "cache": "Redis"
+        },
+
+        "problem_solved": "Eliminated uncertainty in clinic waiting systems by providing live queue tracking and token management.",
+
+        "engineering_decisions": [
+            "Used Redis for low-latency state management",
+            "Implemented WebSockets for real-time updates",
+            "Designed token system for predictable service flow",
+            "Ensured consistent state across concurrent users"
+        ],
+
+        "focus_area": "Real-time systems & event-driven architecture",
+        "status": "Working Prototype"
+    },
+
+    {
+        "module_name": "ASSISTIVE_VISION_SYSTEM",
+        "type": "Computer Vision System",
+        "tagline": "Object detection system for assisting visually impaired users",
+
+        "architecture": {
+            "framework": "FastAPI",
+            "vision_model": "YOLO",
+            "processing": "OpenCV"
+        },
+
+        "problem_solved": "Helps visually impaired users detect nearby objects using real-time video processing and audio feedback.",
+
+        "engineering_decisions": [
+            "Streamed mobile camera feed to processing unit",
+            "Optimized inference for near real-time response (~10 FPS)",
+            "Integrated voice guidance for accessibility",
+            "Analyzed limitations in low-light and dense environments"
+        ],
+
+        "focus_area": "Computer vision & real-world system constraints",
+        "status": "Experimental Prototype"
     }
 ]
 
@@ -106,7 +164,7 @@ projects_data = [
 # ======================
 
 skills_data = {
-    "programming": ["Python (Primary)", "C++", "SQL"],
+    "programming & Systems": ["Python (Primary)", "C++", "SQL","Linux"],
     "backend": [
         "Django (ORM, Middleware, Authentication)",
         "FastAPI",
@@ -120,6 +178,7 @@ skills_data = {
     "tools": [
         "Git",
         "GitHub",
+        "Docker",
         "Postman",
         "VS Code"
     ],
@@ -200,4 +259,4 @@ def get_profiles():
 # SERVE FRONTEND
 # ======================
 
-app.mount("/", StaticFiles(directory="backend/static", html=True), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")

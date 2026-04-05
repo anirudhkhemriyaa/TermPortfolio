@@ -5,6 +5,21 @@
     box-sizing: border-box;
 }
 
+
+/* ================= GLOBAL GRID ================= */
+.grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+
+    background-size: 32px 32px;
+}
+
 /* ================= BODY ================= */
 
 body {
@@ -24,7 +39,7 @@ body::before {
     position: fixed;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(200,210,230,0.08), transparent 70%);
+    background: radial-gradient(circle, rgba(200, 210, 230, 0.08), transparent 70%);
     top: -200px;
     left: 50%;
     transform: translateX(-50%);
@@ -40,7 +55,7 @@ body::before {
     background: #0f141c;
     border: 1px solid #2a313d;
     border-radius: 6px;
-    box-shadow: 0 0 40px rgba(180, 200, 230, 0.05);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 20px rgba(180, 200, 230, 0.05);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -105,7 +120,8 @@ body::before {
 
 /* SECTION HEADINGS (clearly different) */
 .line-system {
-    color: #E6ECFF; /* bright moon glow */
+    color: #E6ECFF;
+    /* bright moon glow */
     font-weight: 700;
     letter-spacing: 1px;
     margin-top: 16px;
@@ -114,13 +130,14 @@ body::before {
 
 /* ANSWERS / RESULTS */
 .line-data {
-    color: #7FA9FF; /* distinct frost blue */
+    color: #ceff7f;
+    /* distinct frost blue */
     font-weight: 400;
 }
 
 /* Metadata */
 .line-muted {
-    color: #5E6B82;
+    color: #31b743;
 }
 
 /* Errors */
@@ -145,8 +162,9 @@ body::before {
 /* User input */
 /* USER COMMAND BLOCK */
 .line-user {
-    color: #D6E2FF;                /* lighter lunar blue */
-    background: rgba(120, 150, 255, 0.06); 
+    color: #D6E2FF;
+    /* lighter lunar blue */
+    background: rgba(120, 150, 255, 0.06);
     border-left: 3px solid #7FA9FF;
     padding: 6px 10px;
     margin: 10px 0;
@@ -187,14 +205,15 @@ body::before {
 .input-line {
     display: flex;
     align-items: center;
-    padding-top: 12px;
-    border-top: 1px solid #222935;
+    padding-top: 16px;
+    margin-top: 12px;
+    border-top: 1px dashed #2a3344;
 }
 
 .prompt {
-    color: #dfe6f5;
-    margin-right: 8px;
-    font-weight: 500;
+    color: #7FA9FF;
+    margin-right: 12px;
+    font-weight: 600;
 }
 
 /* Keep input clear & readable */
@@ -203,10 +222,121 @@ input {
     background: transparent;
     border: none;
     outline: none;
-    color: #ffffff;
+    color: #E6ECFF;
     font-family: inherit;
-    font-size: 14px;
-    caret-color: #ffffff;
+    font-size: 14.5px;
+    caret-color: #7FA9FF;
+}
+
+/* ================= PROJECT CARDS ================= */
+
+.project-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 24px;
+    margin: 16px 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.project-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #E6ECFF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+}
+
+.project-title::before {
+    content: "◖";
+    color: #AFC4FF;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.project-meta {
+    font-size: 13px;
+    color: #8b94a7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.project-meta span.highlight {
+    color: #b8c1d4;
+    font-weight: 500;
+}
+
+.project-section {
+    margin-bottom: 16px;
+}
+
+.project-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+/* Semantic Colors */
+.problem-title { color: #E5A970; }
+.engineering-title { color: #7FA9FF; }
+.impact-title { color: #A3D995; }
+
+.section-content {
+    font-size: 13.5px;
+    color: #c8d0df;
+    line-height: 1.6;
+    padding-left: 14px;
+    border-left: 2px solid transparent;
+}
+
+.problem-section .section-content {
+    border-left-color: rgba(229, 169, 112, 0.3);
+}
+
+.impact-section .section-content {
+    border-left-color: rgba(163, 217, 149, 0.3);
+}
+
+.section-list {
+    list-style: none; /* We use custom bullets */
+    padding-left: 14px;
+    border-left: 2px solid rgba(127, 169, 255, 0.3);
+}
+
+.section-list li {
+    font-size: 13.5px;
+    color: #c8d0df;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.section-list li:last-child {
+    margin-bottom: 0;
+}
+
+.section-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: rgba(127, 169, 255, 0.6);
 }
 
 /* ================= UTILITY ================= */

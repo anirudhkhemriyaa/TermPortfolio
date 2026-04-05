@@ -102,7 +102,7 @@ async function execute(command) {
     }
 
     if (parts[1] === "resume") {
-        window.open("/resume.pdf", "_blank");
+        window.open("/Anirudha_.pdf", "_blank");
         return;
     }
 
@@ -185,27 +185,46 @@ async function handleInfo(target) {
 
         if (target === "projects") {
             data.forEach(p => {
-                createLine(p.module_name, "system");
-                createLine("--------------------------------------------------", "divider");
+                const projectCard = document.createElement("div");
+                projectCard.className = "project-card";
 
-                createLine(`Type   : ${p.type}`, "data");
-                createLine(`Status : ${p.status}`, "data");
+                const title = document.createElement("div");
+                title.className = "project-title";
+                title.innerText = p.module_name;
+                projectCard.appendChild(title);
 
-                const stack = Object.values(p.architecture).join(" | ");
-                createLine(`Stack  : ${stack}`, "data");
+                const meta = document.createElement("div");
+                meta.className = "project-meta";
+                const stack = p.architecture ? Object.values(p.architecture).join(" • ") : "N/A";
+                meta.innerHTML = `Type: <span class="highlight">${p.type || 'Standard'}</span> | Status: <span class="highlight">${p.status || 'Completed'}</span><br>Stack: <span class="highlight">${stack}</span>`;
+                projectCard.appendChild(meta);
 
-                createLine("");
-                createLine("Problem Solved:", "muted");
-                createLine(`  ${p.problem_solved}`, "data");
+                if (p.problem_solved) {
+                    const problemSection = document.createElement("div");
+                    problemSection.className = "project-section problem-section";
+                    problemSection.innerHTML = `<div class="section-title problem-title">Problem</div><div class="section-content">${p.problem_solved}</div>`;
+                    projectCard.appendChild(problemSection);
+                }
 
-                createLine("");
-                createLine("Engineering Decisions:", "muted");
-                p.engineering_decisions.forEach(d =>
-                    createLine(`  • ${d}`, "data")
-                );
+                if (p.engineering_decisions && p.engineering_decisions.length > 0) {
+                    const engineeringSection = document.createElement("div");
+                    engineeringSection.className = "project-section engineering-section";
+                    let engItems = p.engineering_decisions.map(d => `<li>${d}</li>`).join("");
+                    engineeringSection.innerHTML = `<div class="section-title engineering-title">Engineering</div><ul class="section-list">${engItems}</ul>`;
+                    projectCard.appendChild(engineeringSection);
+                }
 
-                createLine("");
+                if (p.impact) {
+                    const impactSection = document.createElement("div");
+                    impactSection.className = "project-section impact-section";
+                    impactSection.innerHTML = `<div class="section-title impact-title">Impact</div><div class="section-content">${p.impact}</div>`;
+                    projectCard.appendChild(impactSection);
+                }
+
+                output.appendChild(projectCard);
             });
+            createLine("");
+            terminal.scrollTop = terminal.scrollHeight;
             return;
         }
 
@@ -310,7 +329,7 @@ function renderLink(label, url) {
     div.appendChild(text);
     div.appendChild(link);
     output.appendChild(div);
-}   
+}
 
 
 async function handleProfiles() {
